@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta viewport cho responsive design: trang web sẽ tự động co giãn theo kích thước màn hình thiết bị -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cửa hàng Game Store - Chuyên cung cấp đĩa game chính hãng">
+    <title>Game Store - Cửa hàng đĩa game chính hãng</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- HEADER: Sử dụng thẻ semantic <header> để đánh dấu phần đầu trang, giúp SEO và accessibility -->
+    <header>
+        <h1>🎮 Game Store</h1>
+        <p>Cửa hàng đĩa game chính hãng uy tín hàng đầu</p>
+
+        <!-- NAV: Thẻ semantic cho phần điều hướng chính -->
+        <nav>
+            <ul>
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#products">Sản phẩm</a></li>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN: Thẻ semantic chứa nội dung chính -->
+    <main>
+        <!-- SECTION: Nhóm nội dung theo chủ đề -->
+        <section id="about">
+            <h2>Chào mừng đến với Game Store!</h2>
+            <p>
+                Chúng tôi chuyên cung cấp các đĩa game chính hãng cho PlayStation, Xbox, Nintendo Switch 
+                với giá cả cạnh tranh nhất thị trường. Cam kết 100% hàng chính hãng, bảo hành đầy đủ.
+            </p>
+        </section>
+
+        <section id="products">
+            <h2>Sản phẩm nổi bật</h2>
+
+            <!-- Phần tìm kiếm sản phẩm -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm sản phẩm...">
+                <button id="searchBtn">Tìm kiếm</button>
+                <button id="addProductBtn">➕ Thêm sản phẩm</button>
+            </div>
+
+            <!-- Danh sách sản phẩm sẽ được load từ localStorage bằng JavaScript -->
+            <div class="product-list">
+            </div>
+
+            <!-- Form thêm sản phẩm (ẩn mặc định) -->
+            <div id="addProductForm" class="hidden">
+                <h3>Thêm sản phẩm mới</h3>
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="productName">Tên sản phẩm: <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="productName" 
+                            name="productName" 
+                            placeholder="Nhập tên sản phẩm" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productPrice">Giá (VNĐ): <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="productPrice" 
+                            name="productPrice" 
+                            placeholder="Ví dụ: 1.490.000" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDescription">Mô tả sản phẩm: <span class="required">*</span></label>
+                        <textarea 
+                            id="productDescription" 
+                            name="productDescription" 
+                            rows="3" 
+                            placeholder="Nhập mô tả ngắn về sản phẩm..." 
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImage">Link ảnh sản phẩm:</label>
+                        <input 
+                            type="url" 
+                            id="productImage" 
+                            name="productImage" 
+                            placeholder="https://example.com/image.jpg"
+                        >
+                    </div>
+
+                    <div class="form-group form-group-button">
+                        <button type="submit">Thêm sản phẩm</button>
+                        <button type="button" id="cancelBtn">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Form liên hệ với validation HTML5 -->
+        <section id="contact">
+            <h2>Liên hệ với chúng tôi</h2>
+
+            <!-- method="POST" an toàn hơn GET cho form, action="#" là placeholder -->
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <!-- Thuộc tính "for" của label liên kết với "id" của input, giúp UX và accessibility -->
+                    <label for="name">Họ và tên: <span class="required">*</span></label>
+                    <!-- required: HTML5 validation, bắt buộc phải điền -->
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Nhập họ tên của bạn" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email: <span class="required">*</span></label>
+                    <!-- type="email" tự động validate format email và hiện keyboard phù hợp trên mobile -->
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="email@example.com" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <!-- type="tel" hiển thị keyboard số điện thoại trên mobile -->
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="0901234567"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Nội dung tin nhắn: <span class="required">*</span></label>
+                    <!-- Textarea cho văn bản nhiều dòng, rows chỉ định chiều cao ban đầu -->
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        rows="5" 
+                        placeholder="Nhập nội dung bạn muốn gửi..." 
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group-button">
+                    <!-- type="submit" để gửi form, type="reset" để xóa form -->
+                    <button type="submit">Gửi tin nhắn</button>
+                    <button type="reset">Xóa form</button>
+                </div>
+
+                <p class="form-note">
+                    <small><span class="required">*</span> Các trường bắt buộc</small>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <!-- FOOTER: Thẻ semantic cho phần chân trang -->
+    <footer>
+        <div class="footer-content">
+            <h3>Game Store</h3>
+            <p>
+                <strong>Địa chỉ:</strong> Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội<br>
+                <strong>Điện thoại:</strong> 0123-456-789<br>
+                <strong>Email:</strong> contact@gamestore.vn
+            </p>
+            
+            <p class="social-links">
+                <strong>Theo dõi chúng tôi:</strong><br>
+                <a href="#facebook">Facebook</a> | 
+                <a href="#instagram">Instagram</a> | 
+                <a href="#youtube">YouTube</a>
+            </p>
+
+            <hr>
+
+            <p class="copyright">
+                &copy; 2025 Game Store. Tất cả quyền được bảo lưu.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Nhúng file JavaScript - đặt trước </body> để đảm bảo DOM đã load -->
+    <script src="script.js"></script>
+</body>
+</html>
